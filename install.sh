@@ -9,7 +9,7 @@ dirmaps=(
   "home:$HOME"
 )
 
-if [ -x "$(command -v "$zshdir/bin/zsh")" ]; then
+if [ ! -x "$zshdir/bin/zsh" ]; then
   mkdir -p "$zshdir"
   curl -sSL $zshbin | tar -xzC "$zshdir"
   # for add-zsh-hook, is-at-least and compinit
