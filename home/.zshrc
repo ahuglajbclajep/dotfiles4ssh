@@ -10,6 +10,7 @@ if [ -f "$DOTFILES_ROOT/antigen.zsh" ]; then
   # load plugins
   antigen use oh-my-zsh
   antigen bundle common-aliases
+  antigen bundle pyenv
   antigen bundle lukechilds/zsh-nvm
   antigen bundle nvm
   antigen bundle yarn
@@ -28,3 +29,8 @@ if [ -f "$DOTFILES_ROOT/antigen.zsh" ]; then
 fi
 
 setopt nobeep
+
+kill9() {
+  [ $# -eq 0 ] && return 1
+  ps -u "$(whoami)" -o pid,ppid,comm | grep "$@" | awk '{print $1,$2}' | xargs -L 1 kill -9
+}
